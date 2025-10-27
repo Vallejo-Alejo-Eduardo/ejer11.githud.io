@@ -1,0 +1,58 @@
+/*aqui se le va a dar color de fondo y un color de borde*/
+:root {
+    --background: rgb(0, 0, 0);
+    --dark: rgb(0, 0, 0);
+}
+/*estilo para toda la pagina*/
+
+* {
+    padding: 0;
+    margin: 1px;
+    box-sizing: border-box;/*calcula las medidas en metro*/
+}
+
+.contenedor {
+    background: var(--background);/*te crea una variable para el color de fondo que toma el color del:root que declaraste al principio, si quieres que cambie el color de muchos lugares solo es necesaro cambiarlo en el root*/
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-liquid {
+    position: relative;
+    background: var(--dark);/*esta varable tomara el color que hayas declarado en el robot en la varable--dark */
+    width: 20rem;
+    height: 30rem;
+    outline: 0;
+    overflow: hidden;
+}
+.box-liquid::before {
+    content: url("img/img.gif");
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-liquid::after {
+    content: "";
+    position: absolute;
+    background: var(--background);
+    height: 200%;
+    width: 200%;
+    bottom: -50%;
+    left: 50%;
+    border-radius: 40%;
+    transform: translateX(-50%);
+    animation: spin 10s linear infinite;
+}
+/*Keyframes define los pasos que seguira un elemnto durante la animacion en este caso en el plano cartesiano se movera en sentido de la Y*/
+@keyframes spin {
+    0% {
+        transform: translate(-50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -100%) rotate(-500deg);
+    }
+}
